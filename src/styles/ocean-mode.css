@@ -1,0 +1,511 @@
+:root {
+  color-scheme: light;
+  --footer-water: #d9eeea;
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.ocean-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid #ceddcd;
+  border-radius: 30px;
+  background: #f1f6e7;
+  color: #45665e;
+  flex-shrink: 0;
+}
+.ocean-mode-toggle:hover {
+  border-color: #799c8a;
+}
+.mode-toggle-label {
+  font-size: 10px;
+  font-weight: 800;
+  min-width: 25px;
+}
+.mode-toggle-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 47px;
+  height: 27px;
+  padding: 0 5px;
+  border-radius: 20px;
+  background: #dfead7;
+}
+.mode-toggle-track > svg {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+.mode-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: #fffff2;
+  box-shadow: 0 1px 4px #45665e25;
+  transition: transform 0.25s ease;
+}
+.ocean-mode-toggle[aria-pressed='true'] .mode-toggle-thumb {
+  transform: translateX(20px);
+}
+.ocean-moon {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  right: 10%;
+  top: 14%;
+  color: #fff1cb;
+  opacity: 0;
+  transform: translateY(10px) rotate(-15deg);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+.hero-section:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: linear-gradient(180deg, #102b41, #1e405b 48%, #295c70 100%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+.ocean-scenery:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-image:
+    radial-gradient(circle at 16% 23%, #f8edce 1px, transparent 1.8px),
+    radial-gradient(circle at 68% 38%, #b9f0fa 1px, transparent 1.8px),
+    radial-gradient(circle at 36% 77%, #f8edce 1px, transparent 1.8px);
+  background-size:
+    281px 227px,
+    337px 293px,
+    401px 307px;
+  transition: opacity 0.45s ease;
+}
+.sun-glow {
+  transition: opacity 0.45s ease;
+}
+:where(
+  .navbar,
+  .brand-icon,
+  .hero-copy h1,
+  .hero-description,
+  .hero-tagline,
+  .about-section,
+  .interests-section,
+  .contact-section,
+  .site-footer,
+  .site-footer:before,
+  .profile-card,
+  .interest-card,
+  .gallery-card,
+  .social-card,
+  .lightbox,
+  .origin-note,
+  .gallery-filters button,
+  .section-title h2,
+  .section-title p
+) {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Moonlit blues keep the harbor warm and readable after sunset. */
+:root[data-ocean-mode='night'] {
+  color-scheme: dark;
+  --cream: #102b41;
+  --navy: #e5f4ef;
+  --muted: #b6ced2;
+  --line: #36596b;
+  --coral: #f3a5a9;
+  --footer-water: #17394b;
+  --night-panel: #1a3d50;
+}
+
+:root[data-ocean-mode='night'] ::selection {
+  background: #417b90;
+  color: #fff5d9;
+}
+:root[data-ocean-mode='night'] :focus-visible {
+  outline-color: #b2e6f4;
+}
+:root[data-ocean-mode='night'] .navbar {
+  background: #16374bf7;
+  border-color: #3c5a6b;
+  box-shadow: 0 6px 22px #06152230;
+}
+:root[data-ocean-mode='night'] .brand-icon {
+  background: #264f60;
+  color: #b9e7ef;
+}
+:root[data-ocean-mode='night'] .nav-links a:hover {
+  background: #2b5064;
+}
+:root[data-ocean-mode='night'] .nav-links a.active {
+  background: #a8dcea;
+  color: #143448;
+}
+:root[data-ocean-mode='night'] .ocean-mode-toggle {
+  background: #24495c;
+  color: #f7e6ba;
+  border-color: #527386;
+}
+:root[data-ocean-mode='night'] .ocean-mode-toggle:hover {
+  border-color: #acd5df;
+}
+:root[data-ocean-mode='night'] .mode-toggle-track {
+  background: #102d43;
+}
+:root[data-ocean-mode='night'] .mode-toggle-thumb {
+  background: #47697a;
+  box-shadow: 0 1px 5px #07172570;
+}
+:root[data-ocean-mode='night'] .hero-section:after {
+  opacity: 1;
+}
+:root[data-ocean-mode='night'] .ocean-scenery:after {
+  opacity: 0.45;
+}
+:root[data-ocean-mode='night'] .sun-glow {
+  opacity: 0;
+}
+:root[data-ocean-mode='night'] .ocean-moon {
+  opacity: 1;
+  transform: translateY(0) rotate(-5deg);
+  filter: drop-shadow(0 0 15px #f5e5b92b);
+}
+:root[data-ocean-mode='night'] .cloud {
+  opacity: 0.15;
+}
+:root[data-ocean-mode='night'] .seagulls {
+  opacity: 0.3;
+}
+:root[data-ocean-mode='night'] .floating-stars > span {
+  color: #eadcb0;
+}
+:root[data-ocean-mode='night'] .hero-copy h1 {
+  color: #e8f4ed;
+}
+:root[data-ocean-mode='night'] .hero-copy h1 > span:not(.heading-sparkle) {
+  color: #a2dff1;
+}
+:root[data-ocean-mode='night'] .welcome-pill {
+  color: #d6eacb;
+  background: #2d5061;
+  border-color: #557581;
+}
+:root[data-ocean-mode='night'] .live-dot {
+  background: #c1e3aa;
+  box-shadow: 0 0 0 3px #c1e3aa14;
+}
+:root[data-ocean-mode='night'] .hero-description {
+  color: #c4dbdc;
+}
+:root[data-ocean-mode='night'] .hero-tagline {
+  color: #dddbbb;
+}
+:root[data-ocean-mode='night'] .hero-footnote,
+:root[data-ocean-mode='night'] .tap-hint,
+:root[data-ocean-mode='night'] .scroll-indicator {
+  color: #c5dfdb;
+}
+:root[data-ocean-mode='night'] .button.primary {
+  background: #addceb;
+  color: #17394e;
+  box-shadow: 0 5px 0 #061c2c38;
+}
+:root[data-ocean-mode='night'] .button.primary:hover {
+  background: #c5edf5;
+}
+:root[data-ocean-mode='night'] .button.secondary {
+  color: #d6e9e7;
+  background: #204459;
+  border-color: #72929c;
+}
+:root[data-ocean-mode='night'] .button.secondary:hover {
+  background: #2d5669;
+}
+:root[data-ocean-mode='night'] .character-halo {
+  border-color: #b2d8e238;
+  background: radial-gradient(circle, #8ec9d51a, #80b8d708 63%, transparent 65%);
+}
+:root[data-ocean-mode='night'] .character-halo:after {
+  border-color: #bddce41c;
+}
+:root[data-ocean-mode='night'] .hello-sticker,
+:root[data-ocean-mode='night'] .character-label,
+:root[data-ocean-mode='night'] .whale-speech,
+:root[data-ocean-mode='night'] .lighthouse-message:not(:empty) {
+  background: #24475b;
+  border-color: #62808c;
+  color: #e1ebe1;
+}
+:root[data-ocean-mode='night'] .bubble {
+  border-color: #b4dfeb80;
+  background: radial-gradient(circle at 30% 25%, #e9fbff66, transparent 40%, #8be9dc10);
+}
+:root[data-ocean-mode='night'] .hero-waterline span {
+  border-color: #abd4dc;
+}
+:root[data-ocean-mode='night'] .lighthouse.is-lit .light-beam {
+  filter: drop-shadow(0 0 4px #ffdf9466);
+}
+:root[data-ocean-mode='night'] .section-title h2 {
+  color: #d9ecec;
+}
+:root[data-ocean-mode='night'] .section-eyebrow,
+:root[data-ocean-mode='night'] .profile-label,
+:root[data-ocean-mode='night'] .profile-facts dt,
+:root[data-ocean-mode='night'] .journal-content > p,
+:root[data-ocean-mode='night'] .journal-bottom > span,
+:root[data-ocean-mode='night'] .card-eyebrow,
+:root[data-ocean-mode='night'] .interest-card > p,
+:root[data-ocean-mode='night'] .interest-details p,
+:root[data-ocean-mode='night'] .detail-toggle,
+:root[data-ocean-mode='night'] .section-postscript,
+:root[data-ocean-mode='night'] .gallery-filters button,
+:root[data-ocean-mode='night'] .gallery-caption span:not(.gallery-open),
+:root[data-ocean-mode='night'] .gallery-note,
+:root[data-ocean-mode='night'] .contact-content > p,
+:root[data-ocean-mode='night'] .social-text > span,
+:root[data-ocean-mode='night'] .contact-note,
+:root[data-ocean-mode='night'] .copy-status,
+:root[data-ocean-mode='night'] .footer-message span,
+:root[data-ocean-mode='night'] .footer-bottom {
+  color: var(--muted);
+}
+:root[data-ocean-mode='night'] .handwritten,
+:root[data-ocean-mode='night'] .bottle-art .handwritten,
+:root[data-ocean-mode='night'] .note-signature {
+  color: #ead0b3;
+}
+:root[data-ocean-mode='night'] .profile-card,
+:root[data-ocean-mode='night'] .interest-card,
+:root[data-ocean-mode='night'] .gallery-card,
+:root[data-ocean-mode='night'] .social-card {
+  background: var(--night-panel);
+  border-color: var(--line);
+  box-shadow: 0 5px 0 #071c2938;
+}
+:root[data-ocean-mode='night'] .profile-portrait {
+  background: #244b5b;
+  border-color: #416575;
+}
+:root[data-ocean-mode='night'] .profile-card {
+  box-shadow: 6px 7px 0 #071f30;
+}
+:root[data-ocean-mode='night'] .tape {
+  background: #9fb8ab66;
+}
+:root[data-ocean-mode='night'] .profile-badge {
+  background: #2b4e55;
+  color: #d2e4c4;
+  border-color: #577369;
+}
+:root[data-ocean-mode='night'] .profile-facts > div,
+:root[data-ocean-mode='night'] .detail-toggle,
+:root[data-ocean-mode='night'] .contact-section {
+  border-color: var(--line);
+}
+:root[data-ocean-mode='night'] .origin-note {
+  background: #343f49;
+  border-color: #5b6466;
+}
+:root[data-ocean-mode='night'] .origin-note p {
+  color: #e0d7bd;
+}
+:root[data-ocean-mode='night'] .note-icon {
+  background: #515b5b;
+  color: #fff0c9;
+}
+:root[data-ocean-mode='night'] .interests-section {
+  background: #173547;
+  border-color: var(--line);
+}
+:root[data-ocean-mode='night'] .interests-section:before {
+  background-image: radial-gradient(ellipse at 50% 100%, #173547 66%, transparent 68%);
+}
+:root[data-ocean-mode='night'] .interest-orbit {
+  background: #4c4a4b;
+}
+:root[data-ocean-mode='night'] .interest-art {
+  color: #f1ccb3;
+}
+:root[data-ocean-mode='night'] .interest-card.lilac .interest-orbit {
+  background: #41445f;
+}
+:root[data-ocean-mode='night'] .interest-card.lilac .interest-art {
+  color: #d6c9ef;
+}
+:root[data-ocean-mode='night'] .interest-card.blue .interest-orbit {
+  background: #2e536b;
+}
+:root[data-ocean-mode='night'] .interest-card.blue .interest-art {
+  color: #bedff1;
+}
+:root[data-ocean-mode='night'] .interest-card.mint .interest-orbit {
+  background: #34544d;
+}
+:root[data-ocean-mode='night'] .interest-card.mint .interest-art {
+  color: #c2e4bc;
+}
+:root[data-ocean-mode='night'] .interest-art > svg {
+  filter: drop-shadow(2px 3px 0 #061b2726);
+}
+:root[data-ocean-mode='night'] .interest-tags > span,
+:root[data-ocean-mode='night'] .soon-badge {
+  background: #2d5061;
+  color: #d0e4df;
+}
+:root[data-ocean-mode='night'] .story-section {
+  background: linear-gradient(130deg, #17364f, #12273e 50%, #202f4d);
+}
+:root[data-ocean-mode='night'] .gallery-filters button:hover,
+:root[data-ocean-mode='night'] .gallery-filters button.selected {
+  background: #2c5061;
+  border-color: #567b87;
+  color: #edf3de;
+}
+:root[data-ocean-mode='night'] .artwork-scene,
+:root[data-ocean-mode='night'] .artwork-image {
+  background: #284e5e;
+}
+:root[data-ocean-mode='night'] .scene-reference {
+  background: #3b4b50;
+}
+:root[data-ocean-mode='night'] .scene-hug {
+  background: #3a425d;
+}
+:root[data-ocean-mode='night'] .scene-smile {
+  background: #4e4b53;
+}
+:root[data-ocean-mode='night'] .scene-stars {
+  background: #182f4a;
+}
+:root[data-ocean-mode='night'] .scene-friend {
+  background: #4d4358;
+}
+:root[data-ocean-mode='night'] .scene-orb {
+  background: #ccecf00c;
+  border-color: #b8d7d84d;
+}
+:root[data-ocean-mode='night'] .sample-label {
+  background: #102b417a;
+  color: #c6dedb;
+}
+:root[data-ocean-mode='night'] .scene-handwritten {
+  color: #e6dfbd;
+}
+:root[data-ocean-mode='night'] .scene-star {
+  color: #e4d7ac;
+}
+:root[data-ocean-mode='night'] .gallery-open {
+  background: #305568;
+  color: #d4e8df;
+}
+:root[data-ocean-mode='night'] .lightbox {
+  border: 1px solid #486779;
+}
+:root[data-ocean-mode='night'] .lightbox-close {
+  background: #1b3e52;
+  border-color: #8aa6aa;
+}
+:root[data-ocean-mode='night'] .lightbox-backdrop {
+  background: #061727ed;
+}
+:root[data-ocean-mode='night'] .contact-section,
+:root[data-ocean-mode='night'] .site-footer {
+  background: #143246;
+}
+:root[data-ocean-mode='night'] .mail-icon {
+  background: #34534f;
+  color: #c0deb0;
+}
+:root[data-ocean-mode='night'] .social-icon {
+  background: #30546a;
+  color: #c8e3f1;
+}
+:root[data-ocean-mode='night'] .social-icon.instagram {
+  background: #5b4855;
+  color: #f4c6ca;
+}
+:root[data-ocean-mode='night'] .social-icon.discord {
+  background: #464762;
+  color: #e1d8fa;
+}
+:root[data-ocean-mode='night'] .social-icon.other {
+  background: #3b574f;
+  color: #d4e8bd;
+}
+:root[data-ocean-mode='night'] .site-footer:before {
+  background: var(--footer-water);
+}
+:root[data-ocean-mode='night'] .footer-message strong {
+  color: #d7e7d8;
+}
+:root[data-ocean-mode='night'] .footer-bottom {
+  border-color: #416371;
+}
+:root[data-ocean-mode='night'] .back-top {
+  background: #254b5c;
+  color: #def1e4;
+  border-color: #6d8f96;
+}
+:root[data-ocean-mode='night'] .back-top:hover {
+  background: #365f6d;
+}
+
+@media (max-width: 950px) {
+  .nav-controls {
+    margin-left: auto;
+  }
+  :root[data-ocean-mode='night'] .nav-links {
+    background: #16374b;
+    border-color: #476575;
+  }
+}
+@media (max-width: 700px) {
+  .ocean-mode-toggle {
+    padding-inline: 8px;
+  }
+  .mode-toggle-label {
+    display: none;
+  }
+  .nav-controls {
+    gap: 3px;
+  }
+  .ocean-moon {
+    width: 43px;
+    height: 43px;
+    right: 6%;
+    top: 9%;
+  }
+  :root[data-ocean-mode='night'] .ocean-scenery:after {
+    opacity: 0.3;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    transition: none !important;
+  }
+}

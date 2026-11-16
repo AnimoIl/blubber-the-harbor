@@ -1,0 +1,43 @@
+export const interests = [
+  {
+    id: 'food',
+    title: 'Foodie Whale',
+    eyebrow: 'MỘT CHIẾC BỤNG VUI',
+    icon: 'food',
+    color: 'peach',
+    description: 'Ăn ngon là một kiểu hạnh phúc. Mình dễ ăn lắm, chỉ có vài ngoại lệ nho nhỏ thôi!',
+    tags: ['Khám phá món ngon', 'Đồ uống thanh mát'],
+    details:
+      'Không sầu riêng, ít xương, ít ngọt. Thêm một ly nước mát nhẹ nhàng là đủ vui cả ngày.',
+  },
+  {
+    id: 'music',
+    title: 'Ocean Playlist',
+    eyebrow: 'GIAI ĐIỆU THẢNH THƠI',
+    icon: 'music',
+    color: 'lilac',
+    description: 'Một chút jazz, một chút lofi. Để những giai điệu êm dịu ôm lấy ngày dài.',
+    tags: ['Jazz', 'Lofi', 'Calm & mellow'],
+    details: 'Những bản nhạc chậm rãi, thư giãn luôn có một góc nhỏ trong playlist của mình.',
+  },
+  {
+    id: 'gaming',
+    title: 'Gaming Reef',
+    eyebrow: 'HẸN BẠN TRONG GAME',
+    icon: 'gaming',
+    color: 'blue',
+    description: 'Lúc thì đi khám phá thế giới, lúc lại cùng đồng đội làm một ván thật vui.',
+    tags: ['HoYoverse', 'Arknights', 'MMORPG', 'Valorant', 'TFT'],
+    details: 'Gặp mình trên PC, PlayStation 5 hoặc Nintendo nhé. Chơi vui là chính!',
+  },
+  {
+    id: 'outdoor',
+    title: 'Beyond the Waves',
+    eyebrow: 'RA NGOÀI CHƠI THÔI',
+    icon: 'outdoor',
+    color: 'mint',
+    description: 'Rời màn hình một chút, hít thở một chút. Ngoài kia còn nhiều điều dễ thương.',
+    tags: ['Tennis', 'Billiards', 'Camping'],
+    details: 'Một trận tennis, vài đường cơ billiards hay một buổi cắm trại — mình đều thích!',
+  },
+];

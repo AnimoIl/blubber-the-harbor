@@ -1,0 +1,143 @@
+.language-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-shrink: 0;
+  min-width: 58px;
+  min-height: 44px;
+  padding: 8px 10px;
+  color: #45665e;
+  background: #f1f6e7;
+  border: 1px solid #ceddcd;
+  border-radius: 25px;
+  font-size: 10px;
+  font-weight: 800;
+}
+.language-toggle:hover {
+  border-color: #799c8a;
+}
+:root[data-ocean-mode='night'] .language-toggle {
+  background: #24495c;
+  color: #e4efe5;
+  border-color: #527386;
+}
+:root[data-ocean-mode='night'] .language-toggle:hover {
+  border-color: #acd5df;
+}
+.whale-speech {
+  max-width: 85%;
+  white-space: normal;
+}
+.lightbox-controls .button {
+  flex-shrink: 0;
+}
+@media (max-width: 1100px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    right: 24px;
+    left: 24px;
+    top: 86px;
+    border-radius: 22px;
+    background: var(--cream);
+    padding: 12px;
+    box-shadow: 0 10px 25px #183b561a;
+    border: 1px solid #e0e7d6;
+  }
+  .nav-links.open {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+  }
+  .nav-links a {
+    font-size: 12px;
+    min-height: 46px;
+    padding: 12px;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+  .nav-controls {
+    margin-left: auto;
+  }
+  :root[data-ocean-mode='night'] .nav-links {
+    background: #16374b;
+    border-color: #476575;
+  }
+}
+@media (max-width: 700px) {
+  .nav-links {
+    top: 75px;
+    right: 14px;
+    left: 14px;
+  }
+  .language-toggle {
+    min-width: 50px;
+    padding-inline: 7px;
+    gap: 4px;
+  }
+  .language-toggle svg {
+    width: 14px;
+  }
+  .character-label {
+    font-size: 10px;
+  }
+  .lightbox-controls > span {
+    text-align: center;
+  }
+}
+@media (max-width: 400px) {
+  .navbar {
+    padding-inline: 10px;
+    gap: 6px;
+  }
+  .brand {
+    gap: 6px;
+  }
+  .brand > span:last-child {
+    font-size: 22px;
+  }
+  .brand-icon {
+    width: 30px;
+    height: 30px;
+  }
+  .brand-icon svg {
+    width: 23px;
+  }
+  .brand-subtitle {
+    font-size: 6px;
+    letter-spacing: 2px;
+  }
+  .nav-controls {
+    gap: 2px;
+  }
+  .ocean-mode-toggle,
+  .language-toggle {
+    width: 44px;
+    min-width: 44px;
+    padding-inline: 4px;
+  }
+  .language-toggle svg {
+    display: none;
+  }
+  .mode-toggle-track {
+    width: 24px;
+    padding: 0;
+    justify-content: center;
+    background: transparent;
+  }
+  .mode-toggle-thumb,
+  .mode-toggle-track > svg:last-child {
+    display: none;
+  }
+  .ocean-mode-toggle[aria-pressed='true'] .mode-toggle-track > svg:first-of-type {
+    display: none;
+  }
+  .ocean-mode-toggle[aria-pressed='true'] .mode-toggle-track > svg:last-child {
+    display: block;
+  }
+  :root[data-ocean-mode='night'] .mode-toggle-track {
+    background: transparent;
+  }
+}
