@@ -23,7 +23,7 @@ export default function AboutSection() {
           number="01"
           eyebrow="GET TO KNOW ME"
           title={<span id="about-title">Captain’s Log</span>}
-          subtitle="Meet the little whale shark behind the harbor."
+          subtitle="Meet the harbor’s extra-big whale."
         />
         <div className="about-grid">
           <Reveal className="profile-card">
@@ -54,7 +54,7 @@ export default function AboutSection() {
           <Reveal className="journal-content" delay={0.1}>
             <span className="handwritten">{t('A page from my little journal...')}</span>
             <h3>
-              {t('Một chiếc cá mập voi,')}
+              {t('Một chiếc cá voi,')}
               <br />
               {t('thật nhiều điều dễ thương')}
               <span className="coral">.</span>

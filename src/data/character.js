@@ -7,14 +7,14 @@ export const character = {
     story: 'images/blubber/story.png',
   },
   nicknames: 'Ú, Cá Mập',
-  species: 'Whale Shark · Cá mập voi',
+  species: 'Whale · Cá voi',
   weight: '~90 kg (tùy bữa ăn!)',
   occupation: 'Food & Beverage Department',
-  tagline: 'A Little Harbor, A Whole Ocean of Warmth',
+  tagline: 'A Little Whale, A Whole Ocean of Warmth',
   welcome:
-    'Chào mừng đến với bến cảng nhỏ của Blubber — nơi một chú cá mập voi mũm mĩm luôn sẵn sàng mang đến nụ cười, những câu chuyện và một chút bình yên giữa đại dương.',
+    'Chào mừng đến với bến cảng nhỏ của Blubber — nơi một chú cá voi mũm mĩm luôn sẵn sàng mang đến nụ cười, những câu chuyện và một chút bình yên giữa đại dương đầy rẫy giông tố này.',
   personality:
-    'Một chiếc cá mập voi mũm mĩm, một nụ cười thật tươi và một chiếc bụng đầy năng lượng tích cực. Blubber thích giúp đỡ mọi người, thích làm ai đó vui lên, và luôn dành chỗ cho bạn ở bến cảng nhỏ này.',
+    'Một chiếc cá voi mũm mĩm, một nụ cười thật tươi và một chiếc bụng đầy năng lượng tích cực. Blubber thích giúp đỡ mọi người, thích làm ai đó vui lên, và luôn dành chỗ cho bạn ở bến cảng nhỏ này.',
   origin:
     'Ngày ấy, khi đang tìm một biệt danh cho mình, mình tình cờ bắt gặp “Blubber” trong từ điển. Đó là tên gọi lớp mỡ dày của các loài thú biển như cá voi. Nghe vừa ngộ nghĩnh vừa đáng yêu quá, thế là cái tên ở lại với mình đến tận bây giờ!',
 };

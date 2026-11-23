@@ -1,18 +1,21 @@
 import useLanguage from '../hooks/useLanguage';
 import { useState } from 'react';
-import { ArrowUpRight, Image } from 'lucide-react';
+import { ArrowUpRight, Image, Plus } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
-import { gallery, galleryCategories } from '../data/gallery';
+import { gallery, galleryCategories, galleryPageSize } from '../data/gallery';
+import { getArtworkText } from '../utils/gallery';
 import SectionTitle from '../components/ui/SectionTitle';
 import GalleryLightbox from '../components/ui/GalleryLightbox';
 import ArtworkVisual from '../components/ui/ArtworkVisual';
 
 export default function GallerySection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [category, setCategory] = useState('All Artwork');
   const [selectedId, setSelectedId] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(galleryPageSize);
   const filtered =
     category === 'All Artwork' ? gallery : gallery.filter((item) => item.category === category);
+  const visible = filtered.slice(0, visibleCount);
   return (
     <section
       id="art-harbor"
@@ -33,15 +36,24 @@ export default function GallerySection() {
               type="button"
               aria-pressed={category === item}
               className={category === item ? 'selected' : ''}
-              onClick={() => setCategory(item)}
+              aria-label={t(item)}
+              onClick={() => {
+                setCategory(item);
+                setVisibleCount(galleryPageSize);
+              }}
             >
               {t(item)}
+              <span className="gallery-filter-count" aria-hidden="true">
+                {item === 'All Artwork'
+                  ? gallery.length
+                  : gallery.filter((artwork) => artwork.category === item).length}
+              </span>
             </button>
           ))}
         </div>
         <div className="gallery-grid">
           <AnimatePresence mode="popLayout">
-            {filtered.map((artwork) => (
+            {visible.map((artwork) => (
               <motion.button
                 layout
                 key={artwork.id}
@@ -52,13 +64,15 @@ export default function GallerySection() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 onClick={() => setSelectedId(artwork.id)}
-                aria-label={t('Xem {title}', { title: t(artwork.title) })}
+                aria-label={t('Xem {title}', {
+                  title: getArtworkText(artwork, 'title', language, t),
+                })}
               >
                 <ArtworkVisual artwork={artwork} />
                 <div className="gallery-caption">
                   <div>
                     <span>{t(artwork.category)}</span>
-                    <h3>{t(artwork.title)}</h3>
+                    <h3>{getArtworkText(artwork, 'title', language, t)}</h3>
                   </div>
                   <span className="gallery-open">
                     <ArrowUpRight size={19} />
@@ -68,14 +82,30 @@ export default function GallerySection() {
             ))}
           </AnimatePresence>
         </div>
+        {visible.length < filtered.length && (
+          <div className="gallery-load-more">
+            <p role="status">
+              {t('Đang hiển thị {shown} / {total} artwork', {
+                shown: visible.length,
+                total: filtered.length,
+              })}
+            </p>
+            <button
+              type="button"
+              className="button secondary"
+              onClick={() => setVisibleCount((count) => count + galleryPageSize)}
+            >
+              <Plus size={17} /> {t('Xem thêm artwork')}
+            </button>
+          </div>
+        )}
         {!filtered.length && (
           <p className="gallery-empty">
             {t('Góc này đang chờ một bức tranh mới. Ghé lại sau nhé!')}
           </p>
         )}
         <p className="gallery-note">
-          <Image size={16} />{' '}
-          {t('Những minh họa mẫu đang giữ chỗ cho artwork chính thức của Blubber.')}
+          <Image size={16} /> {t('Chọn artwork để xem lớn hơn và khám phá từng chi tiết.')}
         </p>
       </div>
       {selectedId && (

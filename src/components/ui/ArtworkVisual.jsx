@@ -2,20 +2,26 @@ import useLanguage from '../../hooks/useLanguage';
 import { useState } from 'react';
 import { resolveImageSource } from '../../utils/images';
 import { WhaleIllustration } from '../ocean/WhaleShark';
+import { getArtworkText } from '../../utils/gallery';
 
 export default function ArtworkVisual({ artwork, full = false }) {
-  const { t } = useLanguage();
-  const [failedSource, setFailedSource] = useState('');
-  const source = resolveImageSource(artwork.image);
-  if (source && source !== failedSource)
+  const { t, language } = useLanguage();
+  const [failedSources, setFailedSources] = useState([]);
+  const original = resolveImageSource(artwork.image);
+  const thumbnail = !full ? resolveImageSource(artwork.thumbnail) : '';
+  const source = [thumbnail, original].find(
+    (candidate) => candidate && !failedSources.includes(candidate),
+  );
+  const title = getArtworkText(artwork, 'title', language, t);
+  if (source)
     return (
       <div className={`artwork-image ${full ? 'full' : ''}`}>
         <img
           src={source}
-          alt={t(artwork.title)}
+          alt={title}
           loading={full ? 'eager' : 'lazy'}
           decoding="async"
-          onError={() => setFailedSource(source)}
+          onError={() => setFailedSources((sources) => [...sources, source])}
         />
       </div>
     );
@@ -28,7 +34,7 @@ export default function ArtworkVisual({ artwork, full = false }) {
       <span className="scene-star star-b" aria-hidden="true">
         ✦
       </span>
-      <WhaleIllustration label={t('Minh họa mẫu: {title}', { title: t(artwork.title) })} />
+      <WhaleIllustration label={t('Minh họa mẫu: {title}', { title })} />
       {artwork.scene === 'reference' && (
         <>
           <div className="reference-swatches" aria-hidden="true">

@@ -15,6 +15,7 @@ import './styles/ocean-mode.css';
 import App from './App';
 import { LanguageProvider } from './hooks/useLanguage';
 import './styles/language.css';
+import './styles/gallery.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

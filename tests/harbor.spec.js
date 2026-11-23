@@ -1,7 +1,8 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 import AxeBuilder from '@axe-core/playwright';
 import { socials } from '../src/data/socials';
 import { safeExternalUrl } from '../src/data/character';
+import { gallery, galleryPageSize } from '../src/data/gallery';
 
 test('all harbor stops render without client errors or broken images', async ({ page }) => {
   const errors = [];
@@ -10,12 +11,12 @@ test('all harbor stops render without client errors or broken images', async ({ 
     if (message.type() === 'error') errors.push(message.text());
   });
   await page.goto('');
-  await expect(page).toHaveTitle('Blubber The Harbor | Whale Shark Fursona Portfolio');
+  await expect(page).toHaveTitle('Blubber The Harbor | Whale Fursona Portfolio');
   await expect(page.locator('main section')).toHaveCount(6);
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Blubber');
   await expect(
     page
-      .getByRole('img', { name: 'Chú cá mập voi xanh mũm mĩm với những đốm sao và nụ cười tươi' })
+      .getByRole('img', { name: 'Chú cá voi xanh mũm mĩm với những đốm sao và nụ cười tươi' })
       .first(),
   ).toBeVisible();
   const broken = await page
@@ -52,9 +53,13 @@ test('gallery filtering and lightbox support keyboard navigation and restore foc
 }) => {
   await page.goto('');
   await page.getByRole('button', { name: 'Chân dung', exact: true }).click();
-  await expect(page.locator('.gallery-card')).toHaveCount(2);
+  await expect(page.locator('.gallery-card')).toHaveCount(
+    Math.min(galleryPageSize, gallery.filter((artwork) => artwork.category === 'Headshots').length),
+  );
   await page.getByRole('button', { name: 'Tất cả', exact: true }).click();
-  await expect(page.locator('.gallery-card')).toHaveCount(6);
+  await expect(page.locator('.gallery-card')).toHaveCount(
+    Math.min(galleryPageSize, gallery.length),
+  );
   const opener = page.getByRole('button', { name: 'Xem A little introduction', exact: true });
   await opener.click();
   const dialog = page.getByRole('dialog');

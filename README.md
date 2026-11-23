@@ -1,8 +1,8 @@
 # Blubber The Harbor
 
-Một bến cảng nhỏ, một đại dương yêu thương. A complete, static Vietnamese character portfolio for Blubber, a cheerful whale shark fursona. Explore a sunlit dock, a captain's journal, four little treasures, starry underwater scenery, an artwork collection, and a message in a bottle.
+Một bến cảng nhỏ, một đại dương yêu thương. A complete, static Vietnamese character portfolio for Blubber, a cheerful whale fursona. Explore a sunlit dock, a captain's journal, four little treasures, starry underwater scenery, an artwork collection, and a message in a bottle.
 
-The original SVG whale shark is an illustrative stand-in, not a claim to be Blubber's final character design. No external character artwork, invented credits, profile URLs, music tracks, or additional canonical lore are included.
+The original SVG whale is an illustrative stand-in, not a claim to be Blubber's final character design. No external character artwork, invented credits, profile URLs, music tracks, or additional canonical lore are included.
 
 ## Stack
 
@@ -63,7 +63,7 @@ Remove-Item Env:PLAYWRIGHT_TEST_BASE_URL
 
 ```text
 .github/workflows/deploy.yml       Build and deploy GitHub Pages
-public/favicon.svg                Original whale shark favicon
+public/favicon.svg                Original whale favicon
 public/images/blubber/            Owner's hero, profile, and story artwork
 public/images/gallery/            Owner's gallery artwork
 src/components/layout/            Floating navbar and footer
@@ -85,7 +85,7 @@ vite.config.js                    Base URL and public-image inventory
 
 Use the **VI / EN** button beside the sun/moon control to change language. Vietnamese is the default. The choice is saved in this browser under `blubber-language` and synchronized between tabs; it is independent of Day & Night Ocean Mode. The switch works for the current visit even if browser storage is blocked.
 
-Introductions, profile details, hobbies, gallery descriptions and filters, contact text, character greetings, controls, and screen-reader labels are translated. The document language, description, and Open Graph locale update too. Branding, harbor location names, artwork titles, platform/game names, artist credits, and character nicknames retain their original spelling. Switching language preserves the current gallery filter, open lightbox, expanded interest cards, and ocean mode.
+Introductions, profile details, hobbies, gallery descriptions and filters, contact text, character greetings, controls, and screen-reader labels are translated. The document language, description, and Open Graph locale update too. Branding, harbor location names, platform/game names, artist credits, and character nicknames retain their original spelling. Artwork titles retain their spelling unless you supply `titleEn`; `descriptionEn` can also provide the English description directly on each artwork. Switching language preserves the current gallery filter, open lightbox, expanded interest cards, and ocean mode.
 
 The existing files in `src/data/` remain the source content. Shared translations live in `src/data/translations.js`, and `src/hooks/useLanguage.jsx` supplies the language context. When changing Vietnamese source copy, update its matching English entry:
 
@@ -126,25 +126,20 @@ public/images/blubber/profile.png
 public/images/blubber/story.png
 ```
 
-Transparent PNGs work well for character art. Artwork uses `object-fit: contain` to preserve its proportions. Missing files render the original SVG whale shark, and unreadable images fall back on error. Do not create empty image files.
+Transparent PNGs work well for character art. Artwork uses `object-fit: contain` to preserve its proportions. Missing files render the original SVG whale, and unreadable images fall back on error. Do not create empty image files.
 
 Vite inventories available public images at startup/build, preventing requests for files that have not been supplied. During development, adding, renaming, or removing an image under `public/images/` automatically restarts Vite to refresh this inventory, and the browser reconnects. Replacing an existing image uses Vite's normal live reload. Always run a new production build before deployment.
 
 ## Manage the gallery
 
 1. Copy a direct HTTPS artwork URL, or put artwork in `public/images/gallery/` (PNG, JPEG, WebP, AVIF, or SVG).
-2. Edit or add an entry in `src/data/gallery.js`:
+2. Add an object to the `artworkEntries` array in `src/data/gallery.js`. Only these three fields are required:
 
 ```js
 {
   id: 'a-unique-stable-id',
   title: 'Tên bức tranh',
-  category: 'Full Body',
   image: 'images/gallery/your-file.webp',
-  description: 'Mô tả ngắn bằng tiếng Việt.',
-  artistName: '',
-  artistUrl: '',
-  scene: 'hug',
 }
 ```
 
@@ -152,7 +147,38 @@ Vite inventories available public images at startup/build, preventing requests f
 
 `image` accepts either a direct external URL, such as `https://images.example.com/blubber/artwork.webp`, or a path relative to `public/`, such as `images/gallery/your-file.webp`. For a local path, omit the `public/` prefix. The same source is used for the gallery thumbnail and full-size lightbox. Empty, unavailable, or unreadable sources display the themed placeholder. Adding, renaming, or removing local images refreshes the development server automatically; URL edits use normal live reload. Always rebuild for deployment.
 
-Supported categories are Reference Sheet, Full Body, Headshots, Commissions, and Other Artwork. Add new categories to `galleryCategories` in the same file. IDs must be unique. Optional artist credits appear in the lightbox, and HTTP(S) credit links open safely in another tab. Credit the actual artist only with permission/accurate information.
+Categories are created automatically from the entries. An omitted or blank `category` becomes **Other Artwork**. To add a new category, simply use its name on an artwork; no component or category-list edits are needed. IDs must be unique and should remain stable when you rename a picture.
+
+You can add any of these optional fields:
+
+| Field                      | Purpose                                                                                                         |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `category`                 | Existing or new category, such as `Full Body` or `Chibi`.                                                       |
+| `description`              | Vietnamese/source description.                                                                                  |
+| `titleEn`, `descriptionEn` | English text for this artwork, without editing the shared translation dictionary.                               |
+| `thumbnail`                | Optional smaller image for the grid. The viewer always opens `image`; a failed thumbnail falls back to `image`. |
+| `artistName`, `artistUrl`  | Actual artist credit and optional HTTP(S) link.                                                                 |
+| `scene`                    | One of the six illustrated fallback scenes listed below.                                                        |
+
+For example, an artwork can include its own bilingual copy and category:
+
+```js
+{
+  id: 'beach-day',
+  title: 'Ngày ở biển',
+  titleEn: 'A day by the sea',
+  image: 'images/gallery/beach-day.webp',
+  category: 'Chibi',
+  description: 'Mô tả tranh của bạn.',
+  descriptionEn: 'Your artwork description.',
+},
+```
+
+The grid initially shows nine artworks. **Show more artwork** loads the next group, and changing categories resets that group. Change the positive integer `galleryPageSize` in the same file to adjust the group size. The lightbox can navigate every artwork in the selected category, including ones not yet shown in the grid. No backend or component edits are needed when adding more entries.
+
+The artwork viewer provides a larger image area, zoom from **100% to 400%**, a fit-to-frame button, an expanded view, and an **open original image** link when an image source is configured. Scroll/swipe within the image to inspect it after zooming; keyboard users can focus that area and use arrow keys to pan. Outside that area, left/right arrow keys navigate artwork. Escape closes the viewer and restores focus. Changing artwork resets zoom to 100%.
+
+Optional artist credits appear in the lightbox, and HTTP(S) credit links open safely in another tab. Credit the actual artist only with permission/accurate information.
 
 Empty or missing images show one of six explicitly labeled SVG studies (`reference`, `hug`, `smile`, `stars`, `harbor`, `friend`). No component changes are needed to add real art. Reference sheets are displayed in full, including in the lightbox.
 
@@ -206,7 +232,7 @@ After Pages returns the final URL, add the following to the HTML `<head>`, subst
 <link rel="canonical" href="YOUR_FINAL_ABSOLUTE_SITE_URL" />
 <meta property="og:url" content="YOUR_FINAL_ABSOLUTE_SITE_URL" />
 <meta property="og:image" content="YOUR_FINAL_ABSOLUTE_SHARING_IMAGE_URL" />
-<meta property="og:image:alt" content="Blubber The Harbor — chú cá mập voi mũm mĩm" />
+<meta property="og:image:alt" content="Blubber The Harbor — chú cá voi mũm mĩm" />
 <meta name="twitter:image" content="YOUR_FINAL_ABSOLUTE_SHARING_IMAGE_URL" />
 ```
 

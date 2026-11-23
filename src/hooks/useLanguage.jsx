@@ -11,7 +11,7 @@ export function LanguageProvider({ children }) {
   useEffect(() => {
     document.documentElement.lang = language;
     const description = translate(
-      'Một bến cảng nhỏ, một đại dương yêu thương. Ghé thăm thế giới của chú cá mập voi Blubber.',
+      'Một bến cảng nhỏ, một đại dương yêu thương. Ghé thăm thế giới của chú cá voi Blubber.',
       language,
     );
     for (const selector of [

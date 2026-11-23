@@ -1,8 +1,8 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './fixtures';
 import AxeBuilder from '@axe-core/playwright';
 import { character } from '../src/data/character';
 import { interests } from '../src/data/interests';
-import { gallery } from '../src/data/gallery';
+import { gallery, galleryPageSize } from '../src/data/gallery';
 import { socials } from '../src/data/socials';
 import { translate } from '../src/data/translations';
 
@@ -14,12 +14,18 @@ test('language switching translates content and preserves ocean, filters, and ex
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('');
   await expect(page.locator('html')).toHaveAttribute('lang', 'vi');
+  await expect(page.locator('body')).not.toContainText(/cá mập voi/i);
   await page.getByRole('button', { name: 'Chế độ đại dương ban đêm' }).click();
   await page.getByRole('button', { name: 'Kể thêm một chút' }).first().click();
   await page.getByRole('button', { name: 'Chân dung', exact: true }).click();
-  await expect(page.locator('.gallery-card')).toHaveCount(2);
+  await expect(page.locator('.gallery-card')).toHaveCount(
+    Math.min(galleryPageSize, gallery.filter((artwork) => artwork.category === 'Headshots').length),
+  );
   await page.getByRole('button', { name: languageButton }).click();
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page.locator('body')).not.toContainText(/whale shark/i);
+  await expect(page.locator('.profile-facts')).toContainText('Whale');
+  await expect(page.locator('.hero-description')).toContainText('amid this stormy ocean');
   await expect(page.locator('.hero-description')).toContainText(
     'Welcome to Blubber’s little harbor',
   );
@@ -37,7 +43,9 @@ test('language switching translates content and preserves ocean, filters, and ex
     'true',
   );
   await expect(page.locator('#interest-food')).toContainText('No durian');
-  await expect(page.locator('.gallery-card')).toHaveCount(2);
+  await expect(page.locator('.gallery-card')).toHaveCount(
+    Math.min(galleryPageSize, gallery.filter((artwork) => artwork.category === 'Headshots').length),
+  );
   await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute('content', 'en_US');
   await expect(page.locator('meta[name="description"]')).toHaveAttribute(
     'content',
@@ -153,7 +161,7 @@ test('language toggle works with blocked storage and content data has English tr
     character.species,
     character.weight,
     ...interests.flatMap((item) => [item.eyebrow, item.description, item.details, ...item.tags]),
-    ...gallery.map((item) => item.description),
+    ...gallery.filter((item) => !item.descriptionEn).map((item) => item.description),
     ...socials.map((item) => item.label),
   ];
   for (const source of content.filter((text) => /[\u00c0-\u024f\u1e00-\u1eff]/i.test(text))) {

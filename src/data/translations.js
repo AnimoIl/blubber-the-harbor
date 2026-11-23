@@ -1,16 +1,17 @@
 // Source text stays in the existing data files. Add a matching entry here when editing copy.
 export const translations = {
   vi: {
+    'Whale · Cá voi': 'Cá voi',
+    'A Little Whale, A Whole Ocean of Warmth': 'Một chú cá voi nhỏ, một đại dương ấm áp',
     'Somewhere under the sea...': 'Ở một nơi dưới đại dương...',
     'Meet Blubber': 'Làm quen Blubber',
     'Explore the Harbor': 'Khám phá bến cảng',
-    'Oh, hello there!': 'Ồ, chào bạn nhé!',
-    'A little chubby. A lot of love.': 'Hơi mũm mĩm. Thật nhiều yêu thương.',
+    'Hello ♡ Lovely to meet you': 'Chào bạn ♡ Rất vui được làm quen',
+    'Stories, joy, and positivity': 'Những câu chuyện, niềm vui, sự tích cực',
     'LET’S MAKE A LITTLE SPLASH': 'CÙNG KHÁM PHÁ NÀO',
     'GET TO KNOW ME': 'LÀM QUEN VỚI MÌNH',
-    'Meet the little whale shark behind the harbor.':
-      'Làm quen với chú cá mập voi của bến cảng nhé.',
-    'just a happy little whale shark': 'một chiếc cá mập voi vui vẻ',
+    'Meet the harbor’s extra-big whale.': 'Làm quen với chú voi siêu to bự của bến cảng nhé.',
+    'just a happy little whale': 'một chiếc cá voi vui vẻ',
     '✦ GOOD VIBES ABOARD ✦': '✦ MANG NIỀM VUI LÊN THUYỀN ✦',
     'A page from my little journal...': 'Một trang nhật ký nho nhỏ...',
     'Why Blubber?': 'Vì sao là Blubber?',
@@ -46,6 +47,21 @@ export const translations = {
     'A little light to guide you home.': 'Một đốm sáng nhỏ dẫn bạn về nhà.',
   },
   en: {
+    'Chọn artwork để xem lớn hơn và khám phá từng chi tiết.':
+      'Choose an artwork for a closer look at every little detail.',
+    'Đang hiển thị {shown} / {total} artwork': 'Showing {shown} / {total} artworks',
+    'Xem thêm artwork': 'Show more artwork',
+    'Điều chỉnh kích thước ảnh': 'Artwork zoom controls',
+    'Thu nhỏ ảnh': 'Zoom out',
+    'Phóng to ảnh': 'Zoom in',
+    'Mức phóng to': 'Zoom level',
+    'Vừa khung ảnh': 'Fit to frame',
+    'Mở ảnh gốc trong tab mới': 'Open original image in a new tab',
+    'Mở rộng khung xem ảnh': 'Expand artwork viewer',
+    'Thu gọn khung xem ảnh': 'Reduce artwork viewer',
+    'Ảnh artwork, cuộn để xem khi phóng to': 'Artwork image; scroll to explore when zoomed in',
+    'Phóng to để xem chi tiết. Cuộn hoặc vuốt để di chuyển trong ảnh.':
+      'Zoom in for the details. Scroll or swipe to move around the image.',
     'Bỏ qua menu, đến nội dung': 'Skip navigation, go to content',
     'Điều hướng bến cảng': 'Harbor navigation',
     'Blubber The Harbor — về đầu trang': 'Blubber The Harbor — back to top',
@@ -54,21 +70,21 @@ export const translations = {
     'Chế độ đại dương ban đêm': 'Night ocean mode',
     'Chuyển sang đại dương ban ngày': 'Switch to the daytime ocean',
     'Chuyển sang đại dương ban đêm': 'Switch to the nighttime ocean',
-    'Chào mừng đến với bến cảng nhỏ của Blubber — nơi một chú cá mập voi mũm mĩm luôn sẵn sàng mang đến nụ cười, những câu chuyện và một chút bình yên giữa đại dương.':
-      'Welcome to Blubber’s little harbor — where a chubby whale shark is always ready to share a smile, a story, and a little peace in the middle of the ocean.',
+    'Chào mừng đến với bến cảng nhỏ của Blubber — nơi một chú cá voi mũm mĩm luôn sẵn sàng mang đến nụ cười, những câu chuyện và một chút bình yên giữa đại dương đầy rẫy giông tố này.':
+      'Welcome to Blubber’s little harbor — where a chubby whale is always ready to share a smile, a story, and a little peace amid this stormy ocean.',
     'Một bến cảng nhỏ, một đại dương yêu thương.': 'A little harbor, a whole ocean of warmth.',
     'Psst... chạm vào mình nhé!': 'Psst... give me a little tap!',
-    'Một chiếc cá mập voi mũm mĩm, một nụ cười thật tươi và một chiếc bụng đầy năng lượng tích cực. Blubber thích giúp đỡ mọi người, thích làm ai đó vui lên, và luôn dành chỗ cho bạn ở bến cảng nhỏ này.':
-      'A chubby little whale shark, a big sunny smile, and a belly full of positive energy. Blubber loves lending a hand and brightening someone’s day. There’s always a place for you in this little harbor.',
+    'Một chiếc cá voi mũm mĩm, một nụ cười thật tươi và một chiếc bụng đầy năng lượng tích cực. Blubber thích giúp đỡ mọi người, thích làm ai đó vui lên, và luôn dành chỗ cho bạn ở bến cảng nhỏ này.':
+      'A chubby little whale, a big sunny smile, and a belly full of positive energy. Blubber loves lending a hand and brightening someone’s day. There’s always a place for you in this little harbor.',
     'Ngày ấy, khi đang tìm một biệt danh cho mình, mình tình cờ bắt gặp “Blubber” trong từ điển. Đó là tên gọi lớp mỡ dày của các loài thú biển như cá voi. Nghe vừa ngộ nghĩnh vừa đáng yêu quá, thế là cái tên ở lại với mình đến tận bây giờ!':
       'While looking for a nickname, I happened upon “Blubber” in a dictionary. It’s the thick layer of fat found in marine mammals like whales. The word sounded so funny and adorable that it has stayed with me ever since!',
-    'Whale Shark · Cá mập voi': 'Whale Shark',
+    'Whale · Cá voi': 'Whale',
     '~90 kg (tùy bữa ăn!)': '~90 kg (depending on lunch!)',
     'BẠN CÓ THỂ GỌI MÌNH': 'YOU CAN CALL ME',
     'MỘT CHIẾC': 'SPECIES',
     'CÂN NẶNG': 'WEIGHT',
     'CÔNG VIỆC': 'OCCUPATION',
-    'Một chiếc cá mập voi,': 'A little whale shark,',
+    'Một chiếc cá voi,': 'A little whale,',
     'thật nhiều điều dễ thương': 'a whole lot to love',
     'Trên làn da xanh là những đốm nhỏ và họa tiết như một dải ngân hà lấp lánh. Có lẽ vì thế mà mình luôn thấy những điều bé xíu cũng thật đáng yêu.':
       'Across my blue skin, little spots and markings look like a sparkling galaxy. Maybe that’s why I find so much to love in the tiniest things.',
@@ -104,8 +120,8 @@ export const translations = {
       'No grand treasure needed. Just the little things I love.',
     'Mang một chút ngân hà,': 'Carrying a little galaxy',
     'bơi qua những ngày bình thường.': 'through everyday waters.',
-    'Những đốm nhỏ trên cơ thể Blubber tựa như những vì sao rải khắp đại dương. Mỗi chấm sáng là một nét riêng, làm nên một chiếc cá mập voi thật dễ nhận ra.':
-      'Blubber’s spots look like tiny stars scattered across the ocean. Each little marking is part of what makes this whale shark so easy to recognize.',
+    'Những đốm nhỏ trên cơ thể Blubber tựa như những vì sao rải khắp đại dương. Mỗi chấm sáng là một nét riêng, làm nên một chiếc cá voi thật dễ nhận ra.':
+      'Blubber’s spots look like tiny stars scattered across the ocean. Each little marking is part of what makes this whale so easy to recognize.',
     'Còn bên trong? Vẫn là mình thôi — một người bạn vui vẻ, thích giúp đỡ mọi người và luôn muốn mang đến một chút ấm áp.':
       'And on the inside? Still just me — a cheerful friend who loves helping others and sharing a little warmth.',
     'Không cần tỏa sáng rực rỡ.': 'You don’t have to shine the brightest.',
@@ -118,16 +134,16 @@ export const translations = {
       'These sample illustrations are saving a place for Blubber’s official artwork.',
     'Một góc dành cho reference sheet của Blubber. Minh họa SVG mẫu, chưa phải thiết kế nhân vật chính thức.':
       'A place for Blubber’s reference sheet. This sample SVG is not the official character design.',
-    'Chỗ dành cho tranh toàn thân. Minh họa cá mập voi mẫu của website.':
-      'A place for full-body artwork. This is the website’s sample whale shark illustration.',
+    'Chỗ dành cho tranh toàn thân. Minh họa cá voi mẫu của website.':
+      'A place for full-body artwork. This is the website’s sample whale illustration.',
     'Một nụ cười nhỏ cho ngày của bạn. Minh họa mẫu, chờ artwork của Blubber.':
       'A little smile for your day. A sample illustration while we wait for Blubber’s artwork.',
     'Góc nhỏ chờ những bức commission được chủ nhân bổ sung. Chưa có nghệ sĩ được ghi nhận.':
       'A little corner waiting for the owner’s commissioned artwork. No artist has been credited yet.',
     'Minh họa mẫu với những con sóng êm đềm của bến cảng.':
       'A sample illustration with the harbor’s gentle waves.',
-    'Một lời chào từ cá mập voi. Minh họa mẫu, chưa phải artwork chính thức.':
-      'A little hello from a whale shark. A sample illustration, not official artwork.',
+    'Một lời chào từ cá voi. Minh họa mẫu, chưa phải artwork chính thức.':
+      'A little hello from a whale. A sample illustration, not official artwork.',
     'Minh họa mẫu: {title}': 'Sample illustration: {title}',
     'Đóng ảnh': 'Close artwork',
     'Ảnh trước': 'Previous artwork',
@@ -150,15 +166,15 @@ export const translations = {
     'Đã sao chép {username}': 'Copied {username}',
     'Sắp có': 'Coming soon',
     'Về đầu trang': 'Back to top',
-    'Chú cá mập voi xanh mũm mĩm với những đốm sao và nụ cười tươi':
-      'A chubby blue whale shark with starry spots and a bright smile',
-    'Blubber, chú cá mập voi với những đốm sao': 'Blubber, a whale shark with starry spots',
+    'Chú cá voi xanh mũm mĩm với những đốm sao và nụ cười tươi':
+      'A chubby blue whale with starry spots and a bright smile',
+    'Blubber, chú cá voi với những đốm sao': 'Blubber, a whale with starry spots',
     'Chào Blubber — chạm để nhận một lời chào': 'Say hi to Blubber — tap for a greeting',
     'Làm vỡ bong bóng {number}': 'Pop bubble {number}',
     'Bật hoặc tắt đèn hải đăng': 'Toggle the lighthouse light',
     'Ngọn hải đăng nhỏ trên đảo': 'A little lighthouse on an island',
-    'Một bến cảng nhỏ, một đại dương yêu thương. Ghé thăm thế giới của chú cá mập voi Blubber.':
-      'A little harbor, a whole ocean of warmth. Visit the world of Blubber the whale shark.',
+    'Một bến cảng nhỏ, một đại dương yêu thương. Ghé thăm thế giới của chú cá voi Blubber.':
+      'A little harbor, a whole ocean of warmth. Visit the world of Blubber the whale.',
   },
 };
 

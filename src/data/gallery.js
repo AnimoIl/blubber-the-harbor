@@ -1,14 +1,12 @@
-// image accepts a direct HTTPS URL or a path relative to public/.
-// Leave it empty to show the illustrated placeholder.
-export const galleryCategories = [
-  'All Artwork',
-  'Reference Sheet',
-  'Full Body',
-  'Headshots',
-  'Commissions',
-  'Other Artwork',
-];
-export const gallery = [
+import { getGalleryCategories } from '../utils/gallery';
+
+// Add one object below per artwork. Only id, title, and image are required.
+// image/thumbnail accept a direct HTTPS URL or a path relative to public/.
+// Optional: category, description, titleEn, descriptionEn, artistName, artistUrl, scene.
+// Categories appear automatically; keep each id unique.
+export const galleryPageSize = 9;
+
+const artworkEntries = [
   {
     id: 'reference',
     title: 'A little introduction',
@@ -26,7 +24,7 @@ export const gallery = [
     title: 'An ocean-sized hug',
     category: 'Full Body',
     image: '',
-    description: 'Chỗ dành cho tranh toàn thân. Minh họa cá mập voi mẫu của website.',
+    description: 'Chỗ dành cho tranh toàn thân. Minh họa cá voi mẫu của website.',
     artistName: '',
     artistUrl: '',
     scene: 'hug',
@@ -67,9 +65,21 @@ export const gallery = [
     title: 'Hello, little friend!',
     category: 'Headshots',
     image: '',
-    description: 'Một lời chào từ cá mập voi. Minh họa mẫu, chưa phải artwork chính thức.',
+    description: 'Một lời chào từ cá voi. Minh họa mẫu, chưa phải artwork chính thức.',
     artistName: '',
     artistUrl: '',
     scene: 'friend',
   },
 ];
+
+export const gallery = artworkEntries.map((artwork) => ({
+  image: '',
+  description: '',
+  artistName: '',
+  artistUrl: '',
+  scene: 'hug',
+  ...artwork,
+  category: artwork.category?.trim() || 'Other Artwork',
+}));
+
+export const galleryCategories = getGalleryCategories(gallery);

@@ -59,7 +59,7 @@ export default function StorySection() {
           </p>
           <p>
             {t(
-              'Những đốm nhỏ trên cơ thể Blubber tựa như những vì sao rải khắp đại dương. Mỗi chấm sáng là một nét riêng, làm nên một chiếc cá mập voi thật dễ nhận ra.',
+              'Những đốm nhỏ trên cơ thể Blubber tựa như những vì sao rải khắp đại dương. Mỗi chấm sáng là một nét riêng, làm nên một chiếc cá voi thật dễ nhận ra.',
             )}
           </p>
           <p>

@@ -38,7 +38,7 @@ export default function HeroSection({ oceanMode }) {
               ✧
             </span>
           </h1>
-          <p className="hero-tagline">{character.tagline}</p>
+          <p className="hero-tagline">{t(character.tagline)}</p>
           <p className="hero-description">{t(character.welcome)}</p>
           <div className="hero-actions">
             <a href="#captains-log" className="button primary">
@@ -54,14 +54,12 @@ export default function HeroSection({ oceanMode }) {
         </div>
         <div className="hero-art">
           <div className="character-halo" />
-          <div className="hello-sticker">
-            {t('Oh, hello there!')} <span aria-hidden="true">♡</span>
-          </div>
+          <div className="hello-sticker">{t('Hello ♡ Lovely to meet you')}</div>
           <FloatingBubbles count={6} interactive />
           <WhaleShark />
           <div className="character-label">
             <Sparkles size={17} />
-            <span>{t('A little chubby. A lot of love.')}</span>
+            <span>{t('Stories, joy, and positivity')}</span>
           </div>
           <span className="tap-hint">
             {t('Psst... chạm vào mình nhé!')}{' '}

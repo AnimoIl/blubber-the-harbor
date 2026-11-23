@@ -42,7 +42,7 @@ const spots = [
 
 export function WhaleIllustration({
   className = '',
-  label = 'Chú cá mập voi xanh mũm mĩm với những đốm sao và nụ cười tươi',
+  label = 'Chú cá voi xanh mũm mĩm với những đốm sao và nụ cười tươi',
 }) {
   const { t } = useLanguage();
   const id = useId().replace(/:/g, '');
@@ -142,7 +142,7 @@ export function CharacterImage({ image, className = '', ...props }) {
       {...props}
       src={source}
       className={className}
-      alt={t('Blubber, chú cá mập voi với những đốm sao')}
+      alt={t('Blubber, chú cá voi với những đốm sao')}
       onError={() => setFailedSource(source)}
     />
   ) : (
