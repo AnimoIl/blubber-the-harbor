@@ -4,25 +4,48 @@ import { socials } from '../src/data/socials';
 import { safeExternalUrl } from '../src/data/character';
 import { gallery, galleryPageSize } from '../src/data/gallery';
 
-test('all harbor stops render without client errors or broken images', async ({ page }) => {
+test('all harbor stops render without client errors or broken images', async ({
+  page,
+  baseURL,
+}) => {
+  const base = new URL(baseURL);
   const errors = [];
+  const invalidAssetPaths = [];
+  page.on('request', (request) => {
+    const url = new URL(request.url());
+    if (url.origin === base.origin && !url.pathname.startsWith(base.pathname)) {
+      invalidAssetPaths.push(url.pathname);
+    }
+  });
+  page.on('response', (response) => {
+    if (new URL(response.url()).origin === base.origin && response.status() >= 400) {
+      errors.push(`${response.status()} ${response.url()}`);
+    }
+  });
   page.on('pageerror', (error) => errors.push(error.message));
   page.on('console', (message) => {
     if (message.type() === 'error') errors.push(message.text());
   });
   await page.goto('');
+  expect(invalidAssetPaths).toEqual([]);
   await expect(page).toHaveTitle('Blubber The Harbor | Whale Fursona Portfolio');
   await expect(page.locator('main section')).toHaveCount(6);
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Blubber');
-  await expect(
-    page
-      .getByRole('img', { name: 'Chú cá voi xanh mũm mĩm với những đốm sao và nụ cười tươi' })
-      .first(),
-  ).toBeVisible();
-  const broken = await page
-    .locator('img')
-    .evaluateAll((images) => images.filter((img) => img.complete && img.naturalWidth === 0).length);
-  expect(broken).toBe(0);
+  await expect(page.locator('.whale-button').getByRole('img')).toBeVisible();
+  for (const image of await page.locator('img').all()) await image.scrollIntoViewIfNeeded();
+  await expect
+    .poll(() =>
+      page
+        .locator('img')
+        .evaluateAll((images) =>
+          images
+            .filter((img) => !img.complete || img.naturalWidth === 0)
+            .map((img) => img.currentSrc),
+        ),
+    )
+    .toEqual([]);
+  await page.evaluate(() => document.fonts.ready.then(() => undefined));
+  expect(invalidAssetPaths).toEqual([]);
   expect(errors).toEqual([]);
 });
 

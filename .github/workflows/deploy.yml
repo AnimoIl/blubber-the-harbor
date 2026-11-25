@@ -33,7 +33,27 @@ jobs:
       - name: Build website
         run: npm run build
         env:
-          VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH || format('{0}/', steps.pages.outputs.base_path) }}
+          # Always use the live Pages path; repository variables can outlive a rename.
+          VITE_BASE_PATH: ${{ format('{0}/', steps.pages.outputs.base_path) }}
+      - name: Verify Pages asset paths
+        env:
+          PAGES_BASE_PATH: ${{ format('{0}/', steps.pages.outputs.base_path) }}
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import { existsSync, readFileSync } from 'node:fs';
+
+          const base = process.env.PAGES_BASE_PATH;
+          const html = readFileSync('dist/index.html', 'utf8');
+          const assets = [...html.matchAll(/(?:src|href)="([^"]+)"/g)].map((match) => match[1]);
+          assert(assets.some((url) => url.endsWith('.js')), 'Missing built JavaScript');
+          assert(assets.some((url) => url.endsWith('.css')), 'Missing built stylesheet');
+          for (const url of assets) {
+            assert(url.startsWith(base), `Asset outside Pages base ${base}: ${url}`);
+            assert(existsSync(`dist/${url.slice(base.length)}`), `Missing built asset: ${url}`);
+          }
+          console.log(`Verified ${assets.length} entry assets under ${base}`);
+          NODE
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:

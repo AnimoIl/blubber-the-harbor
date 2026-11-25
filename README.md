@@ -198,7 +198,9 @@ The default Vite base is `/blubber-the-harbor/`. Asset URLs always use Vite's ba
 4. The workflow checks out source, installs Node LTS, runs `npm ci` and the production build, uploads `dist/` with the official Pages artifact action, then deploys with the official deploy action. It has `contents: read`, `pages: write`, and `id-token: write` permissions and a `github-pages` environment.
 5. Open the URL returned by the successful deployment. Deployment is prepared locally; this implementation does not push your repository or activate a live site automatically.
 
-The workflow derives the base from GitHub Pages configuration, so project repositories, user sites, and custom domains receive the appropriate path. For an explicit override, add a repository Actions variable named `VITE_BASE_PATH`, including leading and trailing slashes.
+The workflow derives the base exclusively from GitHub Pages configuration, so project repositories, user sites, and custom domains receive the appropriate path. Repository Actions variables named `VITE_BASE_PATH` are ignored during deployment; a stale override from a previous repository name must not change the live asset paths. The workflow verifies the generated JavaScript, stylesheet, and favicon paths in `dist/index.html` before uploading `dist/`.
+
+For this repository, the live URL is [https://animoil.github.io/blubber-the-harbor/](https://animoil.github.io/blubber-the-harbor/). The blank-screen deployment referenced `/blubber-the-harbor-1/assets/...` for JavaScript and CSS, which returned 404; those same files were available under `/blubber-the-harbor/assets/...`. React could not start because its entry script did not load. Push this workflow fix to `main` to rebuild and redeploy with the configured Pages path. Remove any obsolete `VITE_BASE_PATH` repository variable to avoid confusion.
 
 For a local override, copy `.env.example` to `.env.local` and set:
 
@@ -258,7 +260,7 @@ Motion honors `prefers-reduced-motion`, mobile screens use fewer particles, and 
 | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
 | PowerShell refuses `npm`              | Use `npm.cmd` as shown above; no global execution-policy change is necessary.                                              |
 | Node engine error                     | Upgrade to supported Node LTS, then run `npm.cmd ci`.                                                                      |
-| Blank page on Pages                   | Set Pages source to GitHub Actions, confirm the workflow succeeded, and verify the base path.                              |
+| Blank page on Pages                   | Confirm the workflow succeeded and built asset URLs start with `/blubber-the-harbor/`; redeploy after changing the base.   |
 | Missing styles or images              | Include the repository subpath; use `images/...` in data rather than `/images/...`. Filenames are case-sensitive on Pages. |
 | SVG fallback remains after adding art | Confirm the file name and extension, restart Vite, and rebuild for deployment.                                             |
 | No social navigation                  | Supply real URLs in `src/data/socials.js`; unconfigured cards intentionally have no link.                                  |
